@@ -2,10 +2,16 @@
 name = "asp_gui"
 version = "0.1.0"
 edition = "2021"
+description = "GUI for asp_lib"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/egonik-unlp/asp_gui"
+authors = ["Eduardo Gonik <gonik@quimica.unlp.edu.ar>"]
+# documentation = "https://docs.rs/asp_lib/latest/asp_lib/"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-asp_lib = "0.1.6"
+asp_lib = "0.1.7"
 eframe = "0.22.0"
 egui = "0.22.0"
+rfd = "0.11.4"
