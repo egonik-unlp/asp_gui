@@ -178,7 +178,9 @@ dependencies = [
 
 [[package]]
 name = "asp_lib"
-version = "0.1.5"
+version = "0.1.6"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2c9f33710fff541b14286cee15a3ab630e9ab64a47be3936a8191dfb169ef6a9"
 dependencies = [
  "csv",
  "itertools",
