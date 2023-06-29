@@ -3,6 +3,7 @@
 use asp_lib::{handle_many_spectra, handle_single_spectrum};
 use eframe::{egui, NativeOptions};
 use egui::{FontId, RichText};
+use egui::special_emojis::{GITHUB, TWITTER};
 use rfd::FileDialog;
 
 fn main() -> Result<(), eframe::Error> {
@@ -95,6 +96,22 @@ fn main() -> Result<(), eframe::Error> {
             ui.add_space(16f32);
 
             ui.label(&resultado2);
+            
+            ui.add_space(96f32);
+            ui.hyperlink_to(
+                format!("{} asp_gui en GitHub", GITHUB),
+                "https://github.com/egonik/asp_gui",
+            );
+        
+            ui.hyperlink_to(
+                format!("{} @edugonik", TWITTER),
+                "https://twitter.com/edugonik",
+            );
+            ui.hyperlink_to("Documentación", "https://docs.rs/asp_gui/");
+
+
+            
         });
     })
+
 }
