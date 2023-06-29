@@ -1,3 +1,5 @@
+#![cfg_attr(not(debug_assertions), windows_subsystem = "windows")] // hide console window on Windows in release
+
 use asp_lib::{handle_many_spectra, handle_single_spectrum};
 use eframe::{egui, NativeOptions};
 use egui::{FontId, RichText};
