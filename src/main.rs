@@ -14,6 +14,8 @@ fn main() -> Result<(), eframe::Error> {
     let mut dir = "".to_owned();
     let mut exp_dir_dir = "exportados".to_owned();
     let options = NativeOptions::default();
+    let mut plotteo = false;
+    let mut plotteo_dir = false;
     eframe::run_simple_native("Agilent ASP Parser", options, move |ctx, _frame| {
         egui::CentralPanel::default().show(ctx, |ui| {
             ui.heading("Agilent ASP Parser");
@@ -35,7 +37,7 @@ fn main() -> Result<(), eframe::Error> {
                         .add_filter("Agilent ASP File", &["asp", "ASP"])
                         .set_directory("/")
                         .pick_file()
-                        .unwrap()
+                        .unwrap_or("".into())
                         .to_str()
                         .unwrap()
                         .to_owned();
@@ -47,9 +49,10 @@ fn main() -> Result<(), eframe::Error> {
                     .labelled_by(name_label.id);
             });
             ui.add_space(20f32);
+            ui.checkbox(&mut plotteo, "Graficar");
 
             if ui.button("Convertir archivo individual").clicked() {
-                resultado1 = match handle_single_spectrum(&file, &filepath_preffix) {
+                resultado1 = match handle_single_spectrum(&file, &filepath_preffix, plotteo) {
                     Ok(x) => format!("El archivo {} se convirtió exitosamente", x),
                     Err(e) => format!("Hubo un error, descripción => {}", e),
                 };
@@ -72,7 +75,7 @@ fn main() -> Result<(), eframe::Error> {
                 if ui.button("Explorar").clicked() {
                      dir = FileDialog::new()
                     .pick_folder()
-                    .unwrap()
+                    .unwrap_or("".into())
                     .as_os_str()
                     .to_str()
                     .unwrap()
@@ -86,9 +89,10 @@ fn main() -> Result<(), eframe::Error> {
                     .labelled_by(foldername_label.id);
             });
             ui.add_space(20f32);
+            ui.checkbox(&mut plotteo_dir, "Graficar todos los archivos del directorio");
 
             if ui.button("Convertir directorio").clicked() {
-                resultado2 = match handle_many_spectra(&dir, &exp_dir_dir) {
+                resultado2 = match handle_many_spectra(&dir, &exp_dir_dir, plotteo_dir) {
                     Ok(x) => format!("El directorio {} y sus subdirectorios se convirtieron exitosamente", x),
                     Err(e) => format!("Hubo un error, descripción => {}", e),
                 };
