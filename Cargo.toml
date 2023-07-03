@@ -1,6 +1,6 @@
 [package]
 name = "asp_gui"
-version = "0.1.1"
+version = "0.1.2"
 edition = "2021"
 description = "GUI for asp_lib"
 license = "MIT OR Apache-2.0"
