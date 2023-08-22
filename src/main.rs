@@ -1,9 +1,10 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")] // hide console window on Windows in release
+mod utils;
 
 use asp_lib::{handle_many_spectra, handle_single_spectrum};
 use eframe::{egui, NativeOptions};
-use egui::{FontId, RichText};
 use egui::special_emojis::{GITHUB, TWITTER};
+use egui::{FontId, RichText};
 use rfd::FileDialog;
 
 fn main() -> Result<(), eframe::Error> {
@@ -13,7 +14,10 @@ fn main() -> Result<(), eframe::Error> {
     let mut file = "".to_owned();
     let mut dir = "".to_owned();
     let mut exp_dir_dir = "exportados".to_owned();
-    let options = NativeOptions::default();
+    let options = NativeOptions {
+        icon_data : Some(utils::load_icon("./assets/icon.png")),
+        ..Default::default()
+    };
     eframe::run_simple_native("Agilent ASP Parser", options, move |ctx, _frame| {
         egui::CentralPanel::default().show(ctx, |ui| {
             ui.heading("Agilent ASP Parser");
@@ -100,7 +104,7 @@ fn main() -> Result<(), eframe::Error> {
             ui.add_space(96f32);
             ui.hyperlink_to(
                 format!("{} asp_gui en GitHub", GITHUB),
-                "https://github.com/egonik/asp_gui",
+                "https://github.com/egonik-unlp/asp_gui",
             );
         
             ui.hyperlink_to(
@@ -113,5 +117,4 @@ fn main() -> Result<(), eframe::Error> {
             
         });
     })
-
 }
