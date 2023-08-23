@@ -15,7 +15,7 @@ fn main() -> Result<(), eframe::Error> {
     let mut dir = "".to_owned();
     let mut exp_dir_dir = "exportados".to_owned();
     let options = NativeOptions {
-        icon_data : Some(utils::load_icon("./assets/icon.png")),
+        icon_data : Some(utils::load_icon()),
         ..Default::default()
     };
     eframe::run_simple_native("Agilent ASP Parser", options, move |ctx, _frame| {

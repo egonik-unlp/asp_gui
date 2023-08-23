@@ -1,8 +1,10 @@
 use eframe::IconData;
+use image::ImageFormat::Png;
 
-pub fn load_icon(path: &str) -> eframe::IconData {
-    let img = image::open(path).expect("Cannot open image");
-    let rgba_im = img.as_rgba8().unwrap();
+pub fn load_icon() -> eframe::IconData {
+    let bytes = include_bytes!("../assets/icon.png");
+    let from_bytes = image::load_from_memory_with_format(bytes, Png).expect("Cannot load image");
+    let rgba_im = from_bytes.as_rgba8().unwrap();
     let (width, height) = rgba_im.dimensions();
     IconData {
         rgba: rgba_im.as_raw().to_vec(),
